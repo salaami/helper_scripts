@@ -6,7 +6,6 @@ hash_filename() {
 }
 
 # Get current date
-current_date=$(date +"%Y-%m-%d")
 current_time=$(date +"%Y-%m-%d %H:%M:%S")
 
 # Get the filename from the first argument
@@ -27,7 +26,7 @@ tags:
 id: $file_hash
 created: $current_time
 modified: $current_time
-template-type: Default
+template-type: Project
 template-version: \"1.0\"
 ---
 
@@ -37,8 +36,10 @@ template-version: \"1.0\"
 
 ## References
 "
+# Expand the tilde to the home directory
+output_dir="$HOME/Documents/Documentation/obsidian-vault-salem/1 Projects"
 
 # Write the content to the file
-echo "$content" >"/home/salem/Documents/Documentation/obsidian-vault-salem/1 Projects/$filename.md"
+echo "$content" >"$output_dir/$filename.md"
 
 echo "Note created: $filename.md"
