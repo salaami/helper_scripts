@@ -17,12 +17,20 @@ if [ -z "$filename" ]; then
   exit 1
 fi
 
+# Function to capitalize the first character of a string if it's a letter
+capitalize_first_letter() {
+  echo "$1" | sed -E 's/^([a-z])/\U\1/'
+}
+
+# Capitalize the first letter of the filename
+capitalized_filename=$(capitalize_first_letter "$filename")
+
 # Calculate the hash of the filename
 file_hash=$(hash_filename "$filename")
 
 # Create the markdown content
 content="---
-tags:
+tags: []
 id: $file_hash
 created: $current_time
 modified: $current_time
@@ -30,7 +38,7 @@ template-type: Project
 template-version: \"1.0\"
 ---
 
-# $filename
+# $capitalized_filename
 
 ## Source
 
